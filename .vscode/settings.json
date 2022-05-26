@@ -1,0 +1,32 @@
+{
+    "vetur.validation.template": false,
+    "vetur.validation.style": false,
+    "vetur.validation.script": false,
+    "vetur.validation.interpolation": false,
+    "vetur.underline.refValue": false,
+    "vetur.languageFeatures.updateImportOnFileMove": false,
+    "vetur.languageFeatures.semanticTokens": false,
+    "vetur.languageFeatures.codeActions": false,
+    "vetur.completion.autoImport": false,
+    "css.validate": false,
+    "tailwindCSS.includeLanguages": {
+        "vue": "html",
+        "vue-html": "html"
+    },
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "[vue]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+}
