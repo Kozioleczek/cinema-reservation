@@ -1,0 +1,44 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Cinema API documentation",
+        "description": "Swagger documentation",
+        "contact": {
+            "name": "Dawid Mazur"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://my-default-host.com",
+            "description": "Server"
+        }
+    ],
+    "paths": {
+        "/index": {
+            "get": {
+                "tags": [
+                    "Cinema"
+                ],
+                "summary": "Display a listing of the resource.",
+                "operationId": "6cad81996f68a5315fc98198ca490d57",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "passport": [
+                            "*"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}
