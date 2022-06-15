@@ -6,21 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Movie extends Model
+class Employee extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'photo_url',
-        'description',
-        'days',
-        'hours',
-        'price'
+        'salary'
     ];
 
-    public function reservations(): BelongsToMany
+    public function payments(): BelongsToMany
     {
-        return $this->belongsToMany(Reservation::class);
+        return $this->belongsToMany(Payment::class);
     }
 }

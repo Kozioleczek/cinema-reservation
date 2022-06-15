@@ -6,17 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Movie extends Model
+class Client extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'photo_url',
-        'description',
-        'days',
-        'hours',
-        'price'
+        'account_name'
     ];
 
     public function reservations(): BelongsToMany
