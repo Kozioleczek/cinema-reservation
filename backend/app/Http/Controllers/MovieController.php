@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\MovieResource;
-use App\Models\Employee;
 use App\Models\Movie;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
+use JetBrains\PhpStorm\Pure;
 
 class MovieController extends Controller
 {
@@ -40,47 +39,105 @@ class MovieController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param StoreMovieRequest $request
-     * @return Response
+     * @OA\Post(
+     *      path="/api/movie/store",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
      */
-    public function store(StoreMovieRequest $request)
+    public function store(StoreMovieRequest $request): MovieResource
     {
-        //
+        $movie = Movie::query()->create($request->validated());
+
+        return new MovieResource($movie);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param Movie $movie
-     * @return Response
+     * @OA\Get(
+     *      path="/api/movie/show/{id}",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Movie id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
      */
-    public function show(Movie $movie)
+    #[Pure] public function show(Movie $movie): MovieResource
     {
-        //
+        return new MovieResource($movie);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateMovieRequest $request
-     * @param Movie $movie
-     * @return Response
+     * @OA\Post(
+     *      path="/api/movie/update",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
      */
-    public function update(UpdateMovieRequest $request, Movie $movie)
+    public function update(UpdateMovieRequest $request, Movie $movie): MovieResource
     {
-        //
+        $movie->update($request->validated());
+
+        return new MovieResource($movie);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param Movie $movie
-     * @return Response
+     * @OA\Delete(
+     *      path="/api/movie/destroy",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
      */
-    public function destroy(Movie $movie)
+    public function destroy(Movie $movie): Response
     {
-        //
+        $movie->delete();
+
+        return response()->noContent();
     }
 }
